@@ -26,3 +26,16 @@ class ItemRepository:
     def get_item(self, id):
         result = self.db.query(ItemModel).filter(ItemModel.id == id).one_or_none()
         return result
+
+    def update_item(self, id: int, data: ItemSchema):
+        item = self.db.query(ItemModel).filter(ItemModel.id == id).one_or_none()
+        item.name = data.name
+        item.price = data.price
+        item.updated_at = datetime.now()
+        self.db.commit()
+        return item
+
+    def delete_item(self, id: int):
+        item = self.db.query(ItemModel).filter(ItemModel.id == id).one_or_none()
+        self.db.delete(item)
+        self.db.commit()

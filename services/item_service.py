@@ -13,7 +13,7 @@ class ItemsService:
             result = ItemRepository(db).get_items()
             return result
         except Exception as e:
-            return str('error obteniendo listado de items ' + e)
+            return str(e)
 
     def store_item(self, item: ItemSchema):
         try:
@@ -29,4 +29,20 @@ class ItemsService:
             result = ItemRepository(db).get_item(item_id)
             return result
         except Exception as e:
-            return str('error obteniendo item ' + e)
+            return str(e)
+
+    def update_item(self, item_id: int, item: ItemSchema):
+        try:
+            db = Session()
+            result = ItemRepository(db).update_item(item_id, item)
+            return result
+        except Exception as e:
+            return str(e)
+
+    def delete_item(self, item_id: int):
+        try:
+            db = Session()
+            result = ItemRepository(db).delete_item(item_id)
+            return result
+        except Exception as e:
+            return str(e)

@@ -1,3 +1,5 @@
 /.venv
 /.idea
+database.sqlite
+*.sqlite
 test_main.http
